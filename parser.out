@@ -1,0 +1,734 @@
+Created by PLY version 3.8 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> CompilationUnit
+Rule 1     CompilationUnit -> NetworkDeclaration CompilationContent
+Rule 2     NetworkDeclaration -> NETWORK WORD NetworkContent
+Rule 3     NetworkContent -> LBRAC RBRAC
+Rule 4     NetworkContent -> LBRAC PropertyValue RBRAC
+Rule 5     CompilationContent -> <empty>
+Rule 6     CompilationContent -> VariableDeclaration CompilationContent
+Rule 7     CompilationContent -> ProbabilityDeclaration CompilationContent
+Rule 8     VariableDeclaration -> VARIABLE ProbabilityVariableName LBRAC VariableDiscrete RBRAC
+Rule 9     ProbabilityVariableName -> WORD
+Rule 10    VariableDiscrete -> VARIABLETYPE DISCRETE LINDEX DECIMAL RINDEX LBRAC VariableValuesList RBRAC SEMI
+Rule 11    VariableValuesList -> <empty>
+Rule 12    VariableValuesList -> ProbabilityVariableValue VariableValuesList
+Rule 13    ProbabilityVariableValue -> WORD
+Rule 14    ProbabilityDeclaration -> PROBABILITY LPAREN ProbabilityVariablesList RPAREN LBRAC ProbabilityContentList RBRAC
+Rule 15    ProbabilityVariablesList -> ProbabilityVariableName
+Rule 16    ProbabilityVariablesList -> ProbabilityVariableName ProbabilityVariablesList
+Rule 17    ProbabilityContentList -> <empty>
+Rule 18    ProbabilityContentList -> ProbabilityContent ProbabilityContentList
+Rule 19    ProbabilityContent -> PropertyValue
+Rule 20    ProbabilityContent -> ProbabilityDefaultEntry
+Rule 21    ProbabilityContent -> ProbabilityEntry
+Rule 22    ProbabilityContent -> ProbabilityTable
+Rule 23    ProbabilityEntry -> LPAREN ProbabilityValuesList RPAREN FloatingPointList SEMI
+Rule 24    ProbabilityValuesList -> ProbabilityVariableValue
+Rule 25    ProbabilityValuesList -> ProbabilityVariableValue ProbabilityValuesList
+Rule 26    ProbabilityDefaultEntry -> DEFAULTVALUE FloatingPointList SEMI
+Rule 27    ProbabilityTable -> TABLEVALUES FloatingPointList SEMI
+Rule 28    FloatingPointList -> FloatingPointToken
+Rule 29    FloatingPointList -> FloatingPointToken FloatingPointList
+Rule 30    FloatingPointToken -> NUMBER
+Rule 31    PropertyValue -> PROPERTY WORD
+
+Terminals, with rules where they appear
+
+DECIMAL              : 10
+DEFAULTVALUE         : 26
+DISCRETE             : 10
+LBRAC                : 3 4 8 10 14
+LINDEX               : 10
+LPAREN               : 14 23
+NETWORK              : 2
+NUMBER               : 30
+PROBABILITY          : 14
+PROPERTY             : 31
+RBRAC                : 3 4 8 10 14
+RINDEX               : 10
+RPAREN               : 14 23
+SEMI                 : 10 23 26 27
+TABLEVALUES          : 27
+VARIABLE             : 8
+VARIABLETYPE         : 10
+WORD                 : 2 9 13 31
+error                : 
+
+Nonterminals, with rules where they appear
+
+CompilationContent   : 1 6 7
+CompilationUnit      : 0
+FloatingPointList    : 23 26 27 29
+FloatingPointToken   : 28 29
+NetworkContent       : 2
+NetworkDeclaration   : 1
+ProbabilityContent   : 18
+ProbabilityContentList : 14 18
+ProbabilityDeclaration : 7
+ProbabilityDefaultEntry : 20
+ProbabilityEntry     : 21
+ProbabilityTable     : 22
+ProbabilityValuesList : 23 25
+ProbabilityVariableName : 8 15 16
+ProbabilityVariableValue : 12 24 25
+ProbabilityVariablesList : 14 16
+PropertyValue        : 4 19
+VariableDeclaration  : 6
+VariableDiscrete     : 8
+VariableValuesList   : 10 12
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . CompilationUnit
+    (1) CompilationUnit -> . NetworkDeclaration CompilationContent
+    (2) NetworkDeclaration -> . NETWORK WORD NetworkContent
+
+    NETWORK         shift and go to state 1
+
+    NetworkDeclaration             shift and go to state 2
+    CompilationUnit                shift and go to state 3
+
+state 1
+
+    (2) NetworkDeclaration -> NETWORK . WORD NetworkContent
+
+    WORD            shift and go to state 4
+
+
+state 2
+
+    (1) CompilationUnit -> NetworkDeclaration . CompilationContent
+    (5) CompilationContent -> .
+    (6) CompilationContent -> . VariableDeclaration CompilationContent
+    (7) CompilationContent -> . ProbabilityDeclaration CompilationContent
+    (8) VariableDeclaration -> . VARIABLE ProbabilityVariableName LBRAC VariableDiscrete RBRAC
+    (14) ProbabilityDeclaration -> . PROBABILITY LPAREN ProbabilityVariablesList RPAREN LBRAC ProbabilityContentList RBRAC
+
+    $end            reduce using rule 5 (CompilationContent -> .)
+    VARIABLE        shift and go to state 8
+    PROBABILITY     shift and go to state 5
+
+    CompilationContent             shift and go to state 9
+    VariableDeclaration            shift and go to state 6
+    ProbabilityDeclaration         shift and go to state 7
+
+state 3
+
+    (0) S' -> CompilationUnit .
+
+
+
+state 4
+
+    (2) NetworkDeclaration -> NETWORK WORD . NetworkContent
+    (3) NetworkContent -> . LBRAC RBRAC
+    (4) NetworkContent -> . LBRAC PropertyValue RBRAC
+
+    LBRAC           shift and go to state 10
+
+    NetworkContent                 shift and go to state 11
+
+state 5
+
+    (14) ProbabilityDeclaration -> PROBABILITY . LPAREN ProbabilityVariablesList RPAREN LBRAC ProbabilityContentList RBRAC
+
+    LPAREN          shift and go to state 12
+
+
+state 6
+
+    (6) CompilationContent -> VariableDeclaration . CompilationContent
+    (5) CompilationContent -> .
+    (6) CompilationContent -> . VariableDeclaration CompilationContent
+    (7) CompilationContent -> . ProbabilityDeclaration CompilationContent
+    (8) VariableDeclaration -> . VARIABLE ProbabilityVariableName LBRAC VariableDiscrete RBRAC
+    (14) ProbabilityDeclaration -> . PROBABILITY LPAREN ProbabilityVariablesList RPAREN LBRAC ProbabilityContentList RBRAC
+
+    $end            reduce using rule 5 (CompilationContent -> .)
+    VARIABLE        shift and go to state 8
+    PROBABILITY     shift and go to state 5
+
+    CompilationContent             shift and go to state 13
+    VariableDeclaration            shift and go to state 6
+    ProbabilityDeclaration         shift and go to state 7
+
+state 7
+
+    (7) CompilationContent -> ProbabilityDeclaration . CompilationContent
+    (5) CompilationContent -> .
+    (6) CompilationContent -> . VariableDeclaration CompilationContent
+    (7) CompilationContent -> . ProbabilityDeclaration CompilationContent
+    (8) VariableDeclaration -> . VARIABLE ProbabilityVariableName LBRAC VariableDiscrete RBRAC
+    (14) ProbabilityDeclaration -> . PROBABILITY LPAREN ProbabilityVariablesList RPAREN LBRAC ProbabilityContentList RBRAC
+
+    $end            reduce using rule 5 (CompilationContent -> .)
+    VARIABLE        shift and go to state 8
+    PROBABILITY     shift and go to state 5
+
+    CompilationContent             shift and go to state 14
+    VariableDeclaration            shift and go to state 6
+    ProbabilityDeclaration         shift and go to state 7
+
+state 8
+
+    (8) VariableDeclaration -> VARIABLE . ProbabilityVariableName LBRAC VariableDiscrete RBRAC
+    (9) ProbabilityVariableName -> . WORD
+
+    WORD            shift and go to state 15
+
+    ProbabilityVariableName        shift and go to state 16
+
+state 9
+
+    (1) CompilationUnit -> NetworkDeclaration CompilationContent .
+
+    $end            reduce using rule 1 (CompilationUnit -> NetworkDeclaration CompilationContent .)
+
+
+state 10
+
+    (3) NetworkContent -> LBRAC . RBRAC
+    (4) NetworkContent -> LBRAC . PropertyValue RBRAC
+    (31) PropertyValue -> . PROPERTY WORD
+
+    RBRAC           shift and go to state 17
+    PROPERTY        shift and go to state 18
+
+    PropertyValue                  shift and go to state 19
+
+state 11
+
+    (2) NetworkDeclaration -> NETWORK WORD NetworkContent .
+
+    VARIABLE        reduce using rule 2 (NetworkDeclaration -> NETWORK WORD NetworkContent .)
+    PROBABILITY     reduce using rule 2 (NetworkDeclaration -> NETWORK WORD NetworkContent .)
+    $end            reduce using rule 2 (NetworkDeclaration -> NETWORK WORD NetworkContent .)
+
+
+state 12
+
+    (14) ProbabilityDeclaration -> PROBABILITY LPAREN . ProbabilityVariablesList RPAREN LBRAC ProbabilityContentList RBRAC
+    (15) ProbabilityVariablesList -> . ProbabilityVariableName
+    (16) ProbabilityVariablesList -> . ProbabilityVariableName ProbabilityVariablesList
+    (9) ProbabilityVariableName -> . WORD
+
+    WORD            shift and go to state 15
+
+    ProbabilityVariablesList       shift and go to state 20
+    ProbabilityVariableName        shift and go to state 21
+
+state 13
+
+    (6) CompilationContent -> VariableDeclaration CompilationContent .
+
+    $end            reduce using rule 6 (CompilationContent -> VariableDeclaration CompilationContent .)
+
+
+state 14
+
+    (7) CompilationContent -> ProbabilityDeclaration CompilationContent .
+
+    $end            reduce using rule 7 (CompilationContent -> ProbabilityDeclaration CompilationContent .)
+
+
+state 15
+
+    (9) ProbabilityVariableName -> WORD .
+
+    LBRAC           reduce using rule 9 (ProbabilityVariableName -> WORD .)
+    WORD            reduce using rule 9 (ProbabilityVariableName -> WORD .)
+    RPAREN          reduce using rule 9 (ProbabilityVariableName -> WORD .)
+
+
+state 16
+
+    (8) VariableDeclaration -> VARIABLE ProbabilityVariableName . LBRAC VariableDiscrete RBRAC
+
+    LBRAC           shift and go to state 22
+
+
+state 17
+
+    (3) NetworkContent -> LBRAC RBRAC .
+
+    VARIABLE        reduce using rule 3 (NetworkContent -> LBRAC RBRAC .)
+    PROBABILITY     reduce using rule 3 (NetworkContent -> LBRAC RBRAC .)
+    $end            reduce using rule 3 (NetworkContent -> LBRAC RBRAC .)
+
+
+state 18
+
+    (31) PropertyValue -> PROPERTY . WORD
+
+    WORD            shift and go to state 23
+
+
+state 19
+
+    (4) NetworkContent -> LBRAC PropertyValue . RBRAC
+
+    RBRAC           shift and go to state 24
+
+
+state 20
+
+    (14) ProbabilityDeclaration -> PROBABILITY LPAREN ProbabilityVariablesList . RPAREN LBRAC ProbabilityContentList RBRAC
+
+    RPAREN          shift and go to state 25
+
+
+state 21
+
+    (15) ProbabilityVariablesList -> ProbabilityVariableName .
+    (16) ProbabilityVariablesList -> ProbabilityVariableName . ProbabilityVariablesList
+    (15) ProbabilityVariablesList -> . ProbabilityVariableName
+    (16) ProbabilityVariablesList -> . ProbabilityVariableName ProbabilityVariablesList
+    (9) ProbabilityVariableName -> . WORD
+
+    RPAREN          reduce using rule 15 (ProbabilityVariablesList -> ProbabilityVariableName .)
+    WORD            shift and go to state 15
+
+    ProbabilityVariableName        shift and go to state 21
+    ProbabilityVariablesList       shift and go to state 26
+
+state 22
+
+    (8) VariableDeclaration -> VARIABLE ProbabilityVariableName LBRAC . VariableDiscrete RBRAC
+    (10) VariableDiscrete -> . VARIABLETYPE DISCRETE LINDEX DECIMAL RINDEX LBRAC VariableValuesList RBRAC SEMI
+
+    VARIABLETYPE    shift and go to state 28
+
+    VariableDiscrete               shift and go to state 27
+
+state 23
+
+    (31) PropertyValue -> PROPERTY WORD .
+
+    PROPERTY        reduce using rule 31 (PropertyValue -> PROPERTY WORD .)
+    DEFAULTVALUE    reduce using rule 31 (PropertyValue -> PROPERTY WORD .)
+    LPAREN          reduce using rule 31 (PropertyValue -> PROPERTY WORD .)
+    TABLEVALUES     reduce using rule 31 (PropertyValue -> PROPERTY WORD .)
+    RBRAC           reduce using rule 31 (PropertyValue -> PROPERTY WORD .)
+
+
+state 24
+
+    (4) NetworkContent -> LBRAC PropertyValue RBRAC .
+
+    VARIABLE        reduce using rule 4 (NetworkContent -> LBRAC PropertyValue RBRAC .)
+    PROBABILITY     reduce using rule 4 (NetworkContent -> LBRAC PropertyValue RBRAC .)
+    $end            reduce using rule 4 (NetworkContent -> LBRAC PropertyValue RBRAC .)
+
+
+state 25
+
+    (14) ProbabilityDeclaration -> PROBABILITY LPAREN ProbabilityVariablesList RPAREN . LBRAC ProbabilityContentList RBRAC
+
+    LBRAC           shift and go to state 29
+
+
+state 26
+
+    (16) ProbabilityVariablesList -> ProbabilityVariableName ProbabilityVariablesList .
+
+    RPAREN          reduce using rule 16 (ProbabilityVariablesList -> ProbabilityVariableName ProbabilityVariablesList .)
+
+
+state 27
+
+    (8) VariableDeclaration -> VARIABLE ProbabilityVariableName LBRAC VariableDiscrete . RBRAC
+
+    RBRAC           shift and go to state 30
+
+
+state 28
+
+    (10) VariableDiscrete -> VARIABLETYPE . DISCRETE LINDEX DECIMAL RINDEX LBRAC VariableValuesList RBRAC SEMI
+
+    DISCRETE        shift and go to state 31
+
+
+state 29
+
+    (14) ProbabilityDeclaration -> PROBABILITY LPAREN ProbabilityVariablesList RPAREN LBRAC . ProbabilityContentList RBRAC
+    (17) ProbabilityContentList -> .
+    (18) ProbabilityContentList -> . ProbabilityContent ProbabilityContentList
+    (19) ProbabilityContent -> . PropertyValue
+    (20) ProbabilityContent -> . ProbabilityDefaultEntry
+    (21) ProbabilityContent -> . ProbabilityEntry
+    (22) ProbabilityContent -> . ProbabilityTable
+    (31) PropertyValue -> . PROPERTY WORD
+    (26) ProbabilityDefaultEntry -> . DEFAULTVALUE FloatingPointList SEMI
+    (23) ProbabilityEntry -> . LPAREN ProbabilityValuesList RPAREN FloatingPointList SEMI
+    (27) ProbabilityTable -> . TABLEVALUES FloatingPointList SEMI
+
+    RBRAC           reduce using rule 17 (ProbabilityContentList -> .)
+    PROPERTY        shift and go to state 18
+    DEFAULTVALUE    shift and go to state 37
+    LPAREN          shift and go to state 33
+    TABLEVALUES     shift and go to state 39
+
+    ProbabilityContentList         shift and go to state 32
+    ProbabilityContent             shift and go to state 36
+    ProbabilityEntry               shift and go to state 38
+    PropertyValue                  shift and go to state 34
+    ProbabilityDefaultEntry        shift and go to state 35
+    ProbabilityTable               shift and go to state 40
+
+state 30
+
+    (8) VariableDeclaration -> VARIABLE ProbabilityVariableName LBRAC VariableDiscrete RBRAC .
+
+    VARIABLE        reduce using rule 8 (VariableDeclaration -> VARIABLE ProbabilityVariableName LBRAC VariableDiscrete RBRAC .)
+    PROBABILITY     reduce using rule 8 (VariableDeclaration -> VARIABLE ProbabilityVariableName LBRAC VariableDiscrete RBRAC .)
+    $end            reduce using rule 8 (VariableDeclaration -> VARIABLE ProbabilityVariableName LBRAC VariableDiscrete RBRAC .)
+
+
+state 31
+
+    (10) VariableDiscrete -> VARIABLETYPE DISCRETE . LINDEX DECIMAL RINDEX LBRAC VariableValuesList RBRAC SEMI
+
+    LINDEX          shift and go to state 41
+
+
+state 32
+
+    (14) ProbabilityDeclaration -> PROBABILITY LPAREN ProbabilityVariablesList RPAREN LBRAC ProbabilityContentList . RBRAC
+
+    RBRAC           shift and go to state 42
+
+
+state 33
+
+    (23) ProbabilityEntry -> LPAREN . ProbabilityValuesList RPAREN FloatingPointList SEMI
+    (24) ProbabilityValuesList -> . ProbabilityVariableValue
+    (25) ProbabilityValuesList -> . ProbabilityVariableValue ProbabilityValuesList
+    (13) ProbabilityVariableValue -> . WORD
+
+    WORD            shift and go to state 44
+
+    ProbabilityValuesList          shift and go to state 43
+    ProbabilityVariableValue       shift and go to state 45
+
+state 34
+
+    (19) ProbabilityContent -> PropertyValue .
+
+    PROPERTY        reduce using rule 19 (ProbabilityContent -> PropertyValue .)
+    DEFAULTVALUE    reduce using rule 19 (ProbabilityContent -> PropertyValue .)
+    LPAREN          reduce using rule 19 (ProbabilityContent -> PropertyValue .)
+    TABLEVALUES     reduce using rule 19 (ProbabilityContent -> PropertyValue .)
+    RBRAC           reduce using rule 19 (ProbabilityContent -> PropertyValue .)
+
+
+state 35
+
+    (20) ProbabilityContent -> ProbabilityDefaultEntry .
+
+    PROPERTY        reduce using rule 20 (ProbabilityContent -> ProbabilityDefaultEntry .)
+    DEFAULTVALUE    reduce using rule 20 (ProbabilityContent -> ProbabilityDefaultEntry .)
+    LPAREN          reduce using rule 20 (ProbabilityContent -> ProbabilityDefaultEntry .)
+    TABLEVALUES     reduce using rule 20 (ProbabilityContent -> ProbabilityDefaultEntry .)
+    RBRAC           reduce using rule 20 (ProbabilityContent -> ProbabilityDefaultEntry .)
+
+
+state 36
+
+    (18) ProbabilityContentList -> ProbabilityContent . ProbabilityContentList
+    (17) ProbabilityContentList -> .
+    (18) ProbabilityContentList -> . ProbabilityContent ProbabilityContentList
+    (19) ProbabilityContent -> . PropertyValue
+    (20) ProbabilityContent -> . ProbabilityDefaultEntry
+    (21) ProbabilityContent -> . ProbabilityEntry
+    (22) ProbabilityContent -> . ProbabilityTable
+    (31) PropertyValue -> . PROPERTY WORD
+    (26) ProbabilityDefaultEntry -> . DEFAULTVALUE FloatingPointList SEMI
+    (23) ProbabilityEntry -> . LPAREN ProbabilityValuesList RPAREN FloatingPointList SEMI
+    (27) ProbabilityTable -> . TABLEVALUES FloatingPointList SEMI
+
+    RBRAC           reduce using rule 17 (ProbabilityContentList -> .)
+    PROPERTY        shift and go to state 18
+    DEFAULTVALUE    shift and go to state 37
+    LPAREN          shift and go to state 33
+    TABLEVALUES     shift and go to state 39
+
+    ProbabilityContentList         shift and go to state 46
+    ProbabilityContent             shift and go to state 36
+    ProbabilityEntry               shift and go to state 38
+    PropertyValue                  shift and go to state 34
+    ProbabilityDefaultEntry        shift and go to state 35
+    ProbabilityTable               shift and go to state 40
+
+state 37
+
+    (26) ProbabilityDefaultEntry -> DEFAULTVALUE . FloatingPointList SEMI
+    (28) FloatingPointList -> . FloatingPointToken
+    (29) FloatingPointList -> . FloatingPointToken FloatingPointList
+    (30) FloatingPointToken -> . NUMBER
+
+    NUMBER          shift and go to state 48
+
+    FloatingPointList              shift and go to state 47
+    FloatingPointToken             shift and go to state 49
+
+state 38
+
+    (21) ProbabilityContent -> ProbabilityEntry .
+
+    PROPERTY        reduce using rule 21 (ProbabilityContent -> ProbabilityEntry .)
+    DEFAULTVALUE    reduce using rule 21 (ProbabilityContent -> ProbabilityEntry .)
+    LPAREN          reduce using rule 21 (ProbabilityContent -> ProbabilityEntry .)
+    TABLEVALUES     reduce using rule 21 (ProbabilityContent -> ProbabilityEntry .)
+    RBRAC           reduce using rule 21 (ProbabilityContent -> ProbabilityEntry .)
+
+
+state 39
+
+    (27) ProbabilityTable -> TABLEVALUES . FloatingPointList SEMI
+    (28) FloatingPointList -> . FloatingPointToken
+    (29) FloatingPointList -> . FloatingPointToken FloatingPointList
+    (30) FloatingPointToken -> . NUMBER
+
+    NUMBER          shift and go to state 48
+
+    FloatingPointList              shift and go to state 50
+    FloatingPointToken             shift and go to state 49
+
+state 40
+
+    (22) ProbabilityContent -> ProbabilityTable .
+
+    PROPERTY        reduce using rule 22 (ProbabilityContent -> ProbabilityTable .)
+    DEFAULTVALUE    reduce using rule 22 (ProbabilityContent -> ProbabilityTable .)
+    LPAREN          reduce using rule 22 (ProbabilityContent -> ProbabilityTable .)
+    TABLEVALUES     reduce using rule 22 (ProbabilityContent -> ProbabilityTable .)
+    RBRAC           reduce using rule 22 (ProbabilityContent -> ProbabilityTable .)
+
+
+state 41
+
+    (10) VariableDiscrete -> VARIABLETYPE DISCRETE LINDEX . DECIMAL RINDEX LBRAC VariableValuesList RBRAC SEMI
+
+    DECIMAL         shift and go to state 51
+
+
+state 42
+
+    (14) ProbabilityDeclaration -> PROBABILITY LPAREN ProbabilityVariablesList RPAREN LBRAC ProbabilityContentList RBRAC .
+
+    VARIABLE        reduce using rule 14 (ProbabilityDeclaration -> PROBABILITY LPAREN ProbabilityVariablesList RPAREN LBRAC ProbabilityContentList RBRAC .)
+    PROBABILITY     reduce using rule 14 (ProbabilityDeclaration -> PROBABILITY LPAREN ProbabilityVariablesList RPAREN LBRAC ProbabilityContentList RBRAC .)
+    $end            reduce using rule 14 (ProbabilityDeclaration -> PROBABILITY LPAREN ProbabilityVariablesList RPAREN LBRAC ProbabilityContentList RBRAC .)
+
+
+state 43
+
+    (23) ProbabilityEntry -> LPAREN ProbabilityValuesList . RPAREN FloatingPointList SEMI
+
+    RPAREN          shift and go to state 52
+
+
+state 44
+
+    (13) ProbabilityVariableValue -> WORD .
+
+    WORD            reduce using rule 13 (ProbabilityVariableValue -> WORD .)
+    RBRAC           reduce using rule 13 (ProbabilityVariableValue -> WORD .)
+    RPAREN          reduce using rule 13 (ProbabilityVariableValue -> WORD .)
+
+
+state 45
+
+    (24) ProbabilityValuesList -> ProbabilityVariableValue .
+    (25) ProbabilityValuesList -> ProbabilityVariableValue . ProbabilityValuesList
+    (24) ProbabilityValuesList -> . ProbabilityVariableValue
+    (25) ProbabilityValuesList -> . ProbabilityVariableValue ProbabilityValuesList
+    (13) ProbabilityVariableValue -> . WORD
+
+    RPAREN          reduce using rule 24 (ProbabilityValuesList -> ProbabilityVariableValue .)
+    WORD            shift and go to state 44
+
+    ProbabilityVariableValue       shift and go to state 45
+    ProbabilityValuesList          shift and go to state 53
+
+state 46
+
+    (18) ProbabilityContentList -> ProbabilityContent ProbabilityContentList .
+
+    RBRAC           reduce using rule 18 (ProbabilityContentList -> ProbabilityContent ProbabilityContentList .)
+
+
+state 47
+
+    (26) ProbabilityDefaultEntry -> DEFAULTVALUE FloatingPointList . SEMI
+
+    SEMI            shift and go to state 54
+
+
+state 48
+
+    (30) FloatingPointToken -> NUMBER .
+
+    NUMBER          reduce using rule 30 (FloatingPointToken -> NUMBER .)
+    SEMI            reduce using rule 30 (FloatingPointToken -> NUMBER .)
+
+
+state 49
+
+    (28) FloatingPointList -> FloatingPointToken .
+    (29) FloatingPointList -> FloatingPointToken . FloatingPointList
+    (28) FloatingPointList -> . FloatingPointToken
+    (29) FloatingPointList -> . FloatingPointToken FloatingPointList
+    (30) FloatingPointToken -> . NUMBER
+
+    SEMI            reduce using rule 28 (FloatingPointList -> FloatingPointToken .)
+    NUMBER          shift and go to state 48
+
+    FloatingPointList              shift and go to state 55
+    FloatingPointToken             shift and go to state 49
+
+state 50
+
+    (27) ProbabilityTable -> TABLEVALUES FloatingPointList . SEMI
+
+    SEMI            shift and go to state 56
+
+
+state 51
+
+    (10) VariableDiscrete -> VARIABLETYPE DISCRETE LINDEX DECIMAL . RINDEX LBRAC VariableValuesList RBRAC SEMI
+
+    RINDEX          shift and go to state 57
+
+
+state 52
+
+    (23) ProbabilityEntry -> LPAREN ProbabilityValuesList RPAREN . FloatingPointList SEMI
+    (28) FloatingPointList -> . FloatingPointToken
+    (29) FloatingPointList -> . FloatingPointToken FloatingPointList
+    (30) FloatingPointToken -> . NUMBER
+
+    NUMBER          shift and go to state 48
+
+    FloatingPointList              shift and go to state 58
+    FloatingPointToken             shift and go to state 49
+
+state 53
+
+    (25) ProbabilityValuesList -> ProbabilityVariableValue ProbabilityValuesList .
+
+    RPAREN          reduce using rule 25 (ProbabilityValuesList -> ProbabilityVariableValue ProbabilityValuesList .)
+
+
+state 54
+
+    (26) ProbabilityDefaultEntry -> DEFAULTVALUE FloatingPointList SEMI .
+
+    PROPERTY        reduce using rule 26 (ProbabilityDefaultEntry -> DEFAULTVALUE FloatingPointList SEMI .)
+    DEFAULTVALUE    reduce using rule 26 (ProbabilityDefaultEntry -> DEFAULTVALUE FloatingPointList SEMI .)
+    LPAREN          reduce using rule 26 (ProbabilityDefaultEntry -> DEFAULTVALUE FloatingPointList SEMI .)
+    TABLEVALUES     reduce using rule 26 (ProbabilityDefaultEntry -> DEFAULTVALUE FloatingPointList SEMI .)
+    RBRAC           reduce using rule 26 (ProbabilityDefaultEntry -> DEFAULTVALUE FloatingPointList SEMI .)
+
+
+state 55
+
+    (29) FloatingPointList -> FloatingPointToken FloatingPointList .
+
+    SEMI            reduce using rule 29 (FloatingPointList -> FloatingPointToken FloatingPointList .)
+
+
+state 56
+
+    (27) ProbabilityTable -> TABLEVALUES FloatingPointList SEMI .
+
+    PROPERTY        reduce using rule 27 (ProbabilityTable -> TABLEVALUES FloatingPointList SEMI .)
+    DEFAULTVALUE    reduce using rule 27 (ProbabilityTable -> TABLEVALUES FloatingPointList SEMI .)
+    LPAREN          reduce using rule 27 (ProbabilityTable -> TABLEVALUES FloatingPointList SEMI .)
+    TABLEVALUES     reduce using rule 27 (ProbabilityTable -> TABLEVALUES FloatingPointList SEMI .)
+    RBRAC           reduce using rule 27 (ProbabilityTable -> TABLEVALUES FloatingPointList SEMI .)
+
+
+state 57
+
+    (10) VariableDiscrete -> VARIABLETYPE DISCRETE LINDEX DECIMAL RINDEX . LBRAC VariableValuesList RBRAC SEMI
+
+    LBRAC           shift and go to state 59
+
+
+state 58
+
+    (23) ProbabilityEntry -> LPAREN ProbabilityValuesList RPAREN FloatingPointList . SEMI
+
+    SEMI            shift and go to state 60
+
+
+state 59
+
+    (10) VariableDiscrete -> VARIABLETYPE DISCRETE LINDEX DECIMAL RINDEX LBRAC . VariableValuesList RBRAC SEMI
+    (11) VariableValuesList -> .
+    (12) VariableValuesList -> . ProbabilityVariableValue VariableValuesList
+    (13) ProbabilityVariableValue -> . WORD
+
+    RBRAC           reduce using rule 11 (VariableValuesList -> .)
+    WORD            shift and go to state 44
+
+    VariableValuesList             shift and go to state 61
+    ProbabilityVariableValue       shift and go to state 62
+
+state 60
+
+    (23) ProbabilityEntry -> LPAREN ProbabilityValuesList RPAREN FloatingPointList SEMI .
+
+    PROPERTY        reduce using rule 23 (ProbabilityEntry -> LPAREN ProbabilityValuesList RPAREN FloatingPointList SEMI .)
+    DEFAULTVALUE    reduce using rule 23 (ProbabilityEntry -> LPAREN ProbabilityValuesList RPAREN FloatingPointList SEMI .)
+    LPAREN          reduce using rule 23 (ProbabilityEntry -> LPAREN ProbabilityValuesList RPAREN FloatingPointList SEMI .)
+    TABLEVALUES     reduce using rule 23 (ProbabilityEntry -> LPAREN ProbabilityValuesList RPAREN FloatingPointList SEMI .)
+    RBRAC           reduce using rule 23 (ProbabilityEntry -> LPAREN ProbabilityValuesList RPAREN FloatingPointList SEMI .)
+
+
+state 61
+
+    (10) VariableDiscrete -> VARIABLETYPE DISCRETE LINDEX DECIMAL RINDEX LBRAC VariableValuesList . RBRAC SEMI
+
+    RBRAC           shift and go to state 63
+
+
+state 62
+
+    (12) VariableValuesList -> ProbabilityVariableValue . VariableValuesList
+    (11) VariableValuesList -> .
+    (12) VariableValuesList -> . ProbabilityVariableValue VariableValuesList
+    (13) ProbabilityVariableValue -> . WORD
+
+    RBRAC           reduce using rule 11 (VariableValuesList -> .)
+    WORD            shift and go to state 44
+
+    ProbabilityVariableValue       shift and go to state 62
+    VariableValuesList             shift and go to state 64
+
+state 63
+
+    (10) VariableDiscrete -> VARIABLETYPE DISCRETE LINDEX DECIMAL RINDEX LBRAC VariableValuesList RBRAC . SEMI
+
+    SEMI            shift and go to state 65
+
+
+state 64
+
+    (12) VariableValuesList -> ProbabilityVariableValue VariableValuesList .
+
+    RBRAC           reduce using rule 12 (VariableValuesList -> ProbabilityVariableValue VariableValuesList .)
+
+
+state 65
+
+    (10) VariableDiscrete -> VARIABLETYPE DISCRETE LINDEX DECIMAL RINDEX LBRAC VariableValuesList RBRAC SEMI .
+
+    RBRAC           reduce using rule 10 (VariableDiscrete -> VARIABLETYPE DISCRETE LINDEX DECIMAL RINDEX LBRAC VariableValuesList RBRAC SEMI .)
+

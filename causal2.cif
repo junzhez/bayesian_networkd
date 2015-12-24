@@ -1,0 +1,99 @@
+network m1 {
+    variable x {
+        type bool;
+    }
+
+    variable y {
+        type bool;
+    }
+
+    variable z {
+        type bool;
+    }
+    
+    variable u1 {
+        type bool;
+    }
+
+    variable u2 {
+        type bool;
+    }
+
+    variable u3 {
+        type bool;
+    }
+
+    definition (x: u1) {
+        function { u1 };
+    }
+    
+    definition (z: x, u2) {
+        function { x ^ u2 };
+    }
+
+    definition (y: z, u1, u2, u3) {
+        function { z ^ u1 ^ u2 ^ u3 };
+    }
+
+    definition (u1) {
+        probability { 0.6, 0.4 };
+    }
+
+    definition (u2) {
+        probability { 0.3, 0.7};
+    }
+
+    definition (u3) {
+        probability { 0.8, 0.2 };
+    }
+}
+
+network m2 {
+    variable x {
+        type bool;
+    }
+
+    variable y {
+        type bool;
+    }
+
+    variable z {
+        type bool;
+    }
+    
+    variable u1 {
+        type bool;
+    }
+
+    variable u2 {
+        type bool;
+    }
+
+    variable u3 {
+        type bool;
+    }
+
+    definition (x: u1) {
+        function { u1 };
+    }
+    
+    definition (z: x, u2) {
+        function { x ^ u2 };
+    }
+
+    definition (y: z, u1, u2, u3) {
+        function { u3 };
+    }
+
+    definition (u1) {
+        probability { 0.6, 0.4 };
+    }
+
+    definition (u2) {
+        probability { 0.3, 0.7};
+    }
+
+    definition (u3) {
+        probability { 0.8, 0.2 };
+    }
+}

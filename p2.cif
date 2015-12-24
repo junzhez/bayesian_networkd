@@ -1,0 +1,582 @@
+network m1 {
+    variable u1 {
+        type bool;
+    }
+
+    variable u2 {
+        type bool;
+    }
+
+    variable x0 {
+        type bool;
+    }
+
+    variable y0 {
+        type bool;
+    }
+    
+    variable e01 {
+        type bool;
+    }
+
+    variable e02 {
+        type bool;
+    }
+
+    variable x1 {
+        type bool;
+    }
+
+    variable y1 {
+        type bool;
+    }
+    
+    variable e11 {
+        type bool;
+    }
+
+    variable e12 {
+        type bool;
+    }
+
+    variable x2 {
+        type bool;
+    }
+
+    variable y2 {
+        type bool;
+    }
+    
+    variable e21 {
+        type bool;
+    }
+
+    variable e22 {
+        type bool;
+    }
+
+    variable x3 {
+        type bool;
+    }
+
+    variable y3 {
+        type bool;
+    }
+    
+    variable e31 {
+        type bool;
+    }
+
+    variable e32 {
+        type bool;
+    }
+
+    variable x4 {
+        type bool;
+    }
+
+    variable y4 {
+        type bool;
+    }
+    
+    variable e41 {
+        type bool;
+    }
+
+    variable e42 {
+        type bool;
+    }
+
+    variable x5 {
+        type bool;
+    }
+
+    variable y5 {
+        type bool;
+    }
+
+    definition (u1) {
+        probability { 0.75, 0.25 };
+    }
+
+    definition (u2) {
+        probability { 0.75, 0.25 };
+    }
+
+    definition (x0: u1) {
+	function { u1 };
+    }
+
+    definition (y0: u2) {
+	function { u2 };
+    }
+
+    definition (e01) {
+        probability { 1.0, 0.0 };
+    }
+
+    definition (e02) {
+        probability { 1.0, 0.0 };
+    }
+
+    definition (x1: e01, x0, y0) {
+        function { e01 ^ x0 | y0 };
+    }
+
+    definition (y1: e02, x0, y0) {
+        function { e02 ^ x0 | y0 };
+    }
+
+    definition (e11) {
+        probability { 1.0, 0.0 };
+    }
+
+    definition (e12) {
+        probability { 1.0, 0.0 };
+    }
+
+    definition (x2: e11, x1, y1) {
+        function { e11 ^ x1 | y1 };
+    }
+
+    definition (y2: e12, x1, y1) {
+        function { e12 ^ x1 | y1 };
+    }
+
+    definition (e21) {
+        probability { 1.0, 0.0 };
+    }
+
+    definition (e22) {
+        probability { 1.0, 0.0 };
+    }
+
+    definition (x3: e21, x2, y2) {
+        function { e21 ^ x2 | y2 };
+    }
+
+    definition (y3: e22, x2, y2) {
+        function { e22 ^ x2 | y2 };
+    }
+
+    definition (e31) {
+        probability { 1.0, 0.0 };
+    }
+
+    definition (e32) {
+        probability { 1.0, 0.0 };
+    }
+
+    definition (x4: e31, x3, y3) {
+        function { e31 ^ x3 | y3 };
+    }
+
+    definition (y4: e32, x3, y3) {
+        function { e32 ^ x3 | y3 };
+    }
+
+    definition (e41) {
+        probability { 1.0, 0.0 };
+    }
+
+    definition (e42) {
+        probability { 1.0, 0.0 };
+    }
+
+    definition (x5: e41, x4, y4) {
+        function { e41 ^ x4 | y4 };
+    }
+
+    definition (y5: e42, x4, y4) {
+        function { e42 ^ x4 | y4 };
+    }
+}
+
+network m2 {
+    variable u1 {
+        type bool;
+    }
+
+    variable u2 {
+        type bool;
+    }
+
+    variable x0 {
+        type bool;
+    }
+
+    variable y0 {
+        type bool;
+    }
+    
+    variable e01 {
+        type bool;
+    }
+
+    variable e02 {
+        type bool;
+    }
+
+    variable x1 {
+        type bool;
+    }
+
+    variable y1 {
+        type bool;
+    }
+    
+    variable e11 {
+        type bool;
+    }
+
+    variable e12 {
+        type bool;
+    }
+
+    variable x2 {
+        type bool;
+    }
+
+    variable y2 {
+        type bool;
+    }
+    
+    variable e21 {
+        type bool;
+    }
+
+    variable e22 {
+        type bool;
+    }
+
+    variable x3 {
+        type bool;
+    }
+
+    variable y3 {
+        type bool;
+    }
+    
+    variable e31 {
+        type bool;
+    }
+
+    variable e32 {
+        type bool;
+    }
+
+    variable x4 {
+        type bool;
+    }
+
+    variable y4 {
+        type bool;
+    }
+    
+    variable e41 {
+        type bool;
+    }
+
+    variable e42 {
+        type bool;
+    }
+
+    variable x5 {
+        type bool;
+    }
+
+    variable y5 {
+        type bool;
+    }
+
+    definition (u1) {
+        probability { 0.75, 0.25 };
+    }
+
+    definition (u2) {
+        probability { 0.75, 0.25 };
+    }
+
+    definition (x0: u1) {
+	function { u1 };
+    }
+
+    definition (y0: u2) {
+	function { u2 };
+    }
+
+    definition (e01) {
+        probability { 0.95, 0.05 };
+    }
+
+    definition (e02) {
+        probability { 0.95, 0.05 };
+    }
+
+    definition (x1: e01, x0, y0) {
+        function { e01 ^ x0 | y0 };
+    }
+
+    definition (y1: e02, x0, y0) {
+        function { e02 ^ x0 | y0 };
+    }
+
+    definition (e11) {
+        probability { 0.95, 0.05 };
+    }
+
+    definition (e12) {
+        probability { 0.95, 0.05 };
+    }
+
+    definition (x2: e11, x1, y1) {
+        function { e11 ^ x1 | y1 };
+    }
+
+    definition (y2: e12, x1, y1) {
+        function { e12 ^ x1 | y1 };
+    }
+
+    definition (e21) {
+        probability { 0.95, 0.05 };
+    }
+
+    definition (e22) {
+        probability { 0.95, 0.05 };
+    }
+
+    definition (x3: e21, x2, y2) {
+        function { e21 ^ x2 | y2 };
+    }
+
+    definition (y3: e22, x2, y2) {
+        function { e22 ^ x2 | y2 };
+    }
+
+    definition (e31) {
+        probability { 0.95, 0.05 };
+    }
+
+    definition (e32) {
+        probability { 0.95, 0.05 };
+    }
+
+    definition (x4: e31, x3, y3) {
+        function { e31 ^ x3 | y3 };
+    }
+
+    definition (y4: e32, x3, y3) {
+        function { e32 ^ x3 | y3 };
+    }
+
+    definition (e41) {
+        probability { 0.95, 0.05 };
+    }
+
+    definition (e42) {
+        probability { 0.95, 0.05 };
+    }
+
+    definition (x5: e41, x4, y4) {
+        function { e41 ^ x4 | y4 };
+    }
+
+    definition (y5: e42, x4, y4) {
+        function { e42 ^ x4 | y4 };
+    }
+}
+
+network m3 {
+    variable u1 {
+        type bool;
+    }
+
+    variable u2 {
+        type bool;
+    }
+
+    variable x0 {
+        type bool;
+    }
+
+    variable y0 {
+        type bool;
+    }
+    
+    variable e01 {
+        type bool;
+    }
+
+    variable e02 {
+        type bool;
+    }
+
+    variable x1 {
+        type bool;
+    }
+
+    variable y1 {
+        type bool;
+    }
+    
+    variable e11 {
+        type bool;
+    }
+
+    variable e12 {
+        type bool;
+    }
+
+    variable x2 {
+        type bool;
+    }
+
+    variable y2 {
+        type bool;
+    }
+    
+    variable e21 {
+        type bool;
+    }
+
+    variable e22 {
+        type bool;
+    }
+
+    variable x3 {
+        type bool;
+    }
+
+    variable y3 {
+        type bool;
+    }
+    
+    variable e31 {
+        type bool;
+    }
+
+    variable e32 {
+        type bool;
+    }
+
+    variable x4 {
+        type bool;
+    }
+
+    variable y4 {
+        type bool;
+    }
+    
+    variable e41 {
+        type bool;
+    }
+
+    variable e42 {
+        type bool;
+    }
+
+    variable x5 {
+        type bool;
+    }
+
+    variable y5 {
+        type bool;
+    }
+    
+    definition (u1) {
+        probability { 0.75, 0.25 };
+    }
+    
+    definition (u2) {
+        probability { 0.75, 0.25 };
+    }
+
+    definition (x0: u1) {
+	function { u1 };
+    }
+
+    definition (y0: u2) {
+	function { u2 };
+    }
+
+    definition (e01) {
+        probability { 0.8, 0.2 };
+    }
+
+    definition (e02) {
+        probability { 0.8, 0.2 };
+    }
+
+    definition (x1: e01, x0, y0) {
+        function { e01 ^ x0 | y0 };
+    }
+
+    definition (y1: e02, x0, y0) {
+        function { e02 ^ x0 | y0 };
+    }
+
+    definition (e11) {
+        probability { 0.8, 0.2 };
+    }
+
+    definition (e12) {
+        probability { 0.8, 0.2 };
+    }
+
+    definition (x2: e11, x1, y1) {
+        function { e11 ^ x1 | y1 };
+    }
+
+    definition (y2: e12, x1, y1) {
+        function { e12 ^ x1 | y1 };
+    }
+
+    definition (e21) {
+        probability { 0.8, 0.2 };
+    }
+
+    definition (e22) {
+        probability { 0.8, 0.2 };
+    }
+
+    definition (x3: e21, x2, y2) {
+        function { e21 ^ x2 | y2 };
+    }
+
+    definition (y3: e22, x2, y2) {
+        function { e22 ^ x2 | y2 };
+    }
+
+    definition (e31) {
+        probability { 0.8, 0.2 };
+    }
+
+    definition (e32) {
+        probability { 0.8, 0.2 };
+    }
+
+    definition (x4: e31, x3, y3) {
+        function { e31 ^ x3 | y3 };
+    }
+
+    definition (y4: e32, x3, y3) {
+        function { e32 ^ x3 | y3 };
+    }
+
+    definition (e41) {
+        probability { 0.8, 0.2 };
+    }
+
+    definition (e42) {
+        probability { 0.8, 0.2 };
+    }
+
+    definition (x5: e41, x4, y4) {
+        function { e41 ^ x4 | y4 };
+    }
+
+    definition (y5: e42, x4, y4) {
+        function { e42 ^ x4 | y4 };
+    }
+}
+
